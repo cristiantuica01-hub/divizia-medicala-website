@@ -479,12 +479,12 @@
     </div>
     <!-- Mobile menu -->
     <div id="mobile-menu" class="md:hidden border-t border-gray-100 bg-white px-6 py-4 space-y-3">
-      <a href="#" class="block nav-link">Home</a>
-      <a href="#about" class="block nav-link">About Us</a>
-      <a href="#services" class="block nav-link">Services</a>
-      <a href="#cum-lucram" class="block nav-link">How We Work</a>
-      <a href="#contact" class="block nav-link">Contact</a>
-      <a href="#contact" class="btn-orange cta-glow inline-block" style="border-radius:8px;margin-top:8px;background:#10b981;">Let's talk</a>
+      <a href="#" class="block nav-link" onclick="document.getElementById('mobile-menu').classList.remove('open')">Home</a>
+      <a href="#about" class="block nav-link" onclick="document.getElementById('mobile-menu').classList.remove('open')">About Us</a>
+      <a href="#services" class="block nav-link" onclick="document.getElementById('mobile-menu').classList.remove('open')">Services</a>
+      <a href="#cum-lucram" class="block nav-link" onclick="document.getElementById('mobile-menu').classList.remove('open')">How We Work</a>
+      <a href="#contact" class="block nav-link" onclick="document.getElementById('mobile-menu').classList.remove('open')">Contact</a>
+      <a href="#contact" class="btn-orange cta-glow inline-block" style="border-radius:8px;margin-top:8px;background:#10b981;" onclick="document.getElementById('mobile-menu').classList.remove('open')">Let's talk</a>
     </div>
   </nav>
 
@@ -1040,6 +1040,7 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('nav-scrolled', window.scrollY > 10);
     });
+
   </script>
 
 </body>
