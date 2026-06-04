@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divizia Medicala – Medical Specialist Recruitment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      section, div, nav, footer, header {
+        max-width: 100% !important;
+      }
+
+      img {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+
+      /* Fix any element with fixed or large min-width */
+      [style*="min-width"],
+      [style*="width: "] {
+        min-width: unset !important;
+      }
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap');
+
+    body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, span, li {
+      font-family: 'Nunito', sans-serif;
+    }
+
+    :root {
+      --purple: #6B5CE7;
+      --purple-dark: #5647CF;
+      --navy: #1A1628;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --light-bg: #f9f9f9;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-family: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    /* Utility bar */
+    .util-bar {
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 13px;
+      color: #374151;
+    }
+
+    /* Nav */
+    .main-nav {
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-link {
+      font-size: 21px;
+      font-weight: 600;
+      color: #374151;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--purple); }
+
+    /* Purple button */
+    .btn-orange {
+      background: var(--purple);
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 6px;
+      padding: 12px 28px;
+      display: inline-block;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-orange:hover { background: var(--purple-dark); transform: translateY(-1px); }
+    .btn-orange:active { transform: translateY(0); }
+
+    /* Animated border wrapper for navbar CTA */
+    @keyframes borderRotate {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .btn-animated-border {
+      display: inline-block;
+      padding: 2px;
+      border-radius: 8px;
+      background: linear-gradient(270deg, #5b4fcf, #a89ef5, #ffffff, #5b4fcf);
+      background-size: 300% 300%;
+      animation: borderRotate 3s linear infinite;
+      line-height: 0;
+    }
+    .btn-animated-border .btn-orange {
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--purple);
+      border: 2px solid var(--purple);
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 6px;
+      padding: 11px 28px;
+      display: inline-block;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-outline:hover { background: var(--purple); color: #fff; }
+
+    /* Section headings */
+    .section-heading {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+    }
+
+    /* Service cards */
+    .service-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .service-card:hover {
+      box-shadow: 0 8px 24px rgba(107,92,231,0.12), 0 2px 8px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+
+    /* Process step */
+    .step-icon {
+      width: 64px;
+      height: 64px;
+      background: #f5f3ff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    /* Testimonial card */
+    .testimonial-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    /* Stars */
+    .stars { color: var(--purple); font-size: 18px; letter-spacing: 2px; }
+
+    /* Logo row */
+    .logo-item {
+      filter: grayscale(100%) opacity(0.5);
+      transition: filter 0.2s;
+    }
+    .logo-item:hover { filter: grayscale(0%) opacity(1); }
+
+    /* Dark CTA section */
+    .dark-cta {
+      background: linear-gradient(135deg, #1A1628 0%, #2D2357 100%);
+    }
+
+    /* Tag badge */
+    .tag {
+      display: inline-block;
+      background: #f5f3ff;
+      color: var(--purple);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Purple underline accent */
+    .accent-line::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 4px;
+      background: var(--purple);
+      border-radius: 2px;
+      margin-top: 12px;
+    }
+
+    /* Mobile menu toggle */
+    #mobile-menu { display: none; }
+    @media (max-width: 768px) {
+      #mobile-menu.open { display: block; }
+    }
+
+    /* Guarantee badge */
+    .guarantee-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    /* Sticky nav shadow on scroll */
+    .nav-scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+
+    @keyframes subtle-glow {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+      50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.15); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.0); }
+    }
+
+    @keyframes subtle-glow-purple {
+      0% { box-shadow: 0 0 0 0 rgba(91, 79, 207, 0.6); }
+      50% { box-shadow: 0 0 0 6px rgba(91, 79, 207, 0.15); }
+      100% { box-shadow: 0 0 0 0 rgba(91, 79, 207, 0.0); }
+    }
+
+    .cta-glow {
+      animation: subtle-glow 2s ease-in-out infinite;
+    }
+
+    .cta-glow-purple {
+      animation: subtle-glow-purple 2s ease-in-out infinite;
+    }
+
+    @media (max-width: 768px) {
+      #hero-logo-card {
+        display: none !important;
+      }
+
+      /* Mobile menu button: remove border/box */
+      .main-nav button {
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+
+      #hero-cta-buttons a,
+      #hero-cta-buttons button {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Navbar: compact padding + logo centered */
+      .main-nav {
+        padding: 4px 0 !important;
+        min-height: 90px !important;
+      }
+      .main-nav .max-w-7xl {
+        position: relative;
+        justify-content: flex-end;
+        min-height: 90px !important;
+      }
+      .main-nav .max-w-7xl > a:first-child {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Hero: reduced padding and smaller title */
+      #hero {
+        padding-top: 24px !important;
+        padding-bottom: 40px !important;
+      }
+      #hero h1 {
+        font-size: 32px !important;
+        line-height: 1.2 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        margin-bottom: 20px !important;
+      }
+      #hero > div > div:first-child > p {
+        font-size: 17px !important;
+        line-height: 1.7 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        margin-top: 28px !important;
+      }
+
+      /* Hero label: mobile styling */
+      #hero > div > div:first-child > div:first-child span {
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        letter-spacing: 0.05em !important;
+        display: block !important;
+        margin-top: 0 !important;
+      }
+      #hero > div > div:first-child > div:first-child > div {
+        width: 20px !important;
+        max-width: 20px !important;
+      }
+
+      /* Nav logo: constrain height */
+      .main-nav .max-w-7xl > a:first-child img {
+        height: 80px !important;
+        width: auto !important;
+        object-fit: contain !important;
+      }
+
+      /* Nav container: tighter padding */
+      .main-nav .max-w-7xl {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        width: 100% !important;
+      }
+
+      /* Util bar: smaller text, prevent EN cut-off */
+      .util-bar {
+        overflow: visible !important;
+      }
+      .util-bar .max-w-7xl {
+        font-size: 12px !important;
+        padding: 4px 16px !important;
+        width: 100% !important;
+        overflow: visible !important;
+      }
+
+      /* Contact section: 3-col → 1-col */
+      #contact > div:last-child > div {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+      }
+      #contact > div:last-child > div > div:last-child {
+        padding-left: 0 !important;
+      }
+
+      /* Footer: stack vertically */
+      footer.bg-white {
+        padding: 16px !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        text-align: center !important;
+      }
+
+      /* About section: start higher on mobile */
+      #about {
+        padding-top: 40px !important;
+      }
+
+      /* About body paragraphs: match hero subtitle sizing */
+      #about p {
+        font-size: 17px !important;
+        line-height: 1.7 !important;
+      }
+
+      /* Who we serve: closer to the image above */
+      #cui-ne-adresam {
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+      }
+      #services {
+        padding-top: 40px !important;
+      }
+
+      /* All body text paragraphs: left-align and consistent line-height */
+      p {
+        text-align: left !important;
+        line-height: 1.7 !important;
+      }
+
+      /* Who we serve card paragraphs: slightly smaller on mobile */
+      #cui-ne-adresam p {
+        font-size: 16px !important;
+        line-height: 1.7 !important;
+        text-align: left !important;
+      }
+
+      /* Services section: 3-col → 1-col on mobile */
+      #service-cards {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+      }
+      .svc-card {
+        width: 100% !important;
+        min-width: unset !important;
+      }
+      .svc-card h3 {
+        font-size: 20px !important;
+        font-weight: 700 !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+      }
+      .svc-card p {
+        font-size: 16px !important;
+        line-height: 1.7 !important;
+      }
+      #services h2 {
+        font-size: 28px !important;
+        text-align: center !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== UTILITY BAR ====== -->
+  <div class="util-bar">
+    <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+      <div class="flex items-center gap-6">
+        <a href="#" class="flex items-center gap-1.5 text-[13px] text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          recrutare@diviziamedicala.ro
+        </a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://www.linkedin.com/in/cristian-t-11b901b3/" target="_blank" rel="noopener noreferrer" class="text-[13px] text-gray-500 hover:text-gray-800 transition-colors">LinkedIn</a>
+        <a href="index.html" class="text-[13px] text-gray-500 hover:text-gray-800 transition-colors">RO</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== MAIN NAV ====== -->
+  <nav class="main-nav" id="mainNav" style="padding: 10px 0 !important; min-height: 60px !important;">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between" style="padding-top:0!important;padding-bottom:0!important;min-height:60px;">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 flex-shrink-0">
+        <img src="brand_assets/Logo Divizia Medicala.png" alt="Divizia Medicala" style="height:150px;width:auto;" />
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About Us</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#cum-lucram" class="nav-link">How We Work</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+
+      <!-- CTA + mobile toggle -->
+      <div class="flex items-center gap-4">
+        <a href="#contact" class="btn-orange cta-glow hidden md:inline-block" style="border-radius:8px;background:#10b981;">Let's talk</a>
+        <button class="md:hidden p-2 text-gray-600" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden border-t border-gray-100 bg-white px-6 py-4 space-y-3">
+      <a href="#" class="block nav-link">Home</a>
+      <a href="#about" class="block nav-link">About Us</a>
+      <a href="#services" class="block nav-link">Services</a>
+      <a href="#cum-lucram" class="block nav-link">How We Work</a>
+      <a href="#contact" class="block nav-link">Contact</a>
+      <a href="#contact" class="btn-orange cta-glow inline-block" style="border-radius:8px;margin-top:8px;background:#10b981;">Let's talk</a>
+    </div>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <section id="hero" class="bg-white" style="padding-top: 60px !important; padding-bottom: 40px !important;">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <!-- Left -->
+      <div style="padding: 0 20px; width: 100%;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <div style="width:40px;height:1px;background:#d1d5db;flex-shrink:0;"></div>
+          <span style="font-size:12px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:0.1em;">DIVIZIA MEDICALĂ</span>
+        </div>
+        <h1 class="section-heading mb-6" style="font-size:clamp(32px,4.5vw,52px);">
+          We build stable teams for private clinics and hospitals in Romania.
+        </h1>
+        <p class="text-gray-500 mb-8" style="max-width:480px;font-size:17px;line-height:1.7;">
+          We act as an extension of your team and take over the recruitment process from role analysis to candidate integration.
+        </p>
+        <div id="hero-cta-buttons" class="flex flex-wrap gap-4 mb-10">
+          <a href="#contact" class="btn-orange cta-glow" style="background:#10b981;border-radius:8px;">Schedule a call</a>
+          <a href="#services" class="btn-outline">Our services</a>
+        </div>
+      </div>
+      <!-- Right: Image -->
+      <div id="hero-logo-card" class="relative flex justify-center md:justify-end">
+        <div class="relative" style="max-width:480px;width:100%;">
+          <!-- Background shape -->
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-radius:24px;transform:rotate(2deg);"></div>
+          <div
+            class="relative rounded-2xl w-full flex items-center justify-center"
+            style="aspect-ratio:480/520;background:linear-gradient(135deg,#f5f3ff,#ede9fe);box-shadow:0 16px 48px rgba(107,92,231,0.18),0 4px 12px rgba(0,0,0,0.1);max-height:340px;"
+          >
+            <img src="brand_assets/Logo Divizia Medicala.png" alt="Divizia Medicala" style="width:65%;max-width:300px;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="position:relative;width:100%;overflow:hidden;background:#ffffff;padding:12px 0;border-top:1px solid #f0efff;border-bottom:1px solid #f0efff;">
+    <div id="dm-ticker" style="display:flex;gap:12px;width:max-content;will-change:transform;"></div>
+  </div>
+
+  <script>
+  (function() {
+    function initTicker() {
+      var roles = [
+        "Medical Specialist", "Medical Assistant", "Front Desk", "Patient Care",
+        "IT Support", "HR Manager", "Call Center", "Dentist",
+        "General Practitioner", "Office Manager", "Clinic Coordinator", "Pharmacist"
+      ];
+      var track = document.getElementById('dm-ticker');
+      if (!track) return;
+      track.innerHTML = '';
+      var allRoles = roles.concat(roles).concat(roles);
+      allRoles.forEach(function(r) {
+        var s = document.createElement('span');
+        s.textContent = r;
+        s.style.cssText = 'display:inline-flex;align-items:center;background:#f0efff;color:#5b4fcf;border-radius:999px;padding:8px 20px;font-size:14px;font-family:Nunito,sans-serif;white-space:nowrap;flex-shrink:0;';
+        track.appendChild(s);
+      });
+      var pos = 0;
+      var singleWidth = track.scrollWidth / 3;
+      function animate() {
+        pos += 0.6;
+        if (pos >= singleWidth) pos = 0;
+        track.style.transform = 'translateX(-' + pos + 'px)';
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTicker);
+    } else {
+      initTicker();
+    }
+  })();
+  </script>
+
+  <!-- ====== ABOUT SECTION ====== -->
+  <section id="about" class="bg-white py-20 md:py-28" style="scroll-margin-top:80px;">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+        <!-- Left: Text -->
+        <div>
+          <!-- Small label with horizontal line -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+            <div style="width:40px;height:1px;background:#d1d5db;flex-shrink:0;"></div>
+            <span style="font-size:12px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:0.1em;">About us</span>
+          </div>
+
+          <!-- Headline -->
+          <h2 style="font-size:clamp(30px,3.5vw,48px);font-weight:800;line-height:1.15;letter-spacing:-0.025em;margin-bottom:28px;">
+            <span style="color:#1A1628;">We support private clinics</span><br/>
+            <span style="color:#6B5CE7;">in Romania</span>
+          </h2>
+
+          <!-- Paragraphs -->
+          <p style="color:#6b7280;font-size:17px;line-height:1.7;margin-bottom:20px;">
+            Divizia Medicală supports private clinics in Romania in building stable, functional teams. We act as an extension of your team, providing continuous support in an industry where recruitment is often done reactively, without structure and under operational pressure.
+          </p>
+          <p style="color:#6b7280;font-size:17px;line-height:1.7;margin-bottom:36px;">
+            From front desk and patient care to medical assistants and physicians, we act as an external recruitment partner — with the goal of relieving teams from the burden of recruitment and allowing them to focus on what truly matters: medical care.
+          </p>
+
+          <!-- CTA Link -->
+          <a href="#services" style="color:#6B5CE7;font-weight:700;font-size:16px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.75'" onmouseout="this.style.opacity='1'">
+            Discover our services →
+          </a>
+        </div>
+
+        <!-- Right: Image with trapezoid clip-path -->
+        <div style="display:flex;justify-content:flex-end;">
+          <div style="width:100%;max-width:520px;">
+            <img
+              src="images/despre-noi.png"
+              alt="About Us - Divizia Medicala"
+              style="width:100%;height:450px;object-fit:cover;object-position:center;clip-path:polygon(0 0, 100% 0, 85% 100%, 15% 100%);display:block;"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== WHO WE SERVE ====== -->
+  <section id="cui-ne-adresam" style="background:#fff;padding:96px 0;">
+    <div style="max-width:1250px;margin:0 auto;padding:0 24px;">
+
+      <h2 style="font-size:clamp(28px,3.5vw,44px);font-weight:800;color:#1A1628;letter-spacing:-0.03em;line-height:1.2;margin:0 0 48px;text-align:center;">Who do we serve?</h2>
+
+      <!-- 2x2 card grid -->
+      <div class="cui-grid-v2">
+
+        <!-- Card 1 — High staff turnover -->
+        <div style="background:#fff;border-radius:16px;padding:28px;display:flex;flex-direction:column;border:1px solid #eeeeee;box-shadow:0 4px 24px rgba(0,0,0,0.08);transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.13)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 24px rgba(0,0,0,0.08)'">
+          <div style="width:56px;height:56px;background:#f5f3ff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;flex-shrink:0;">
+            <svg width="28" height="28" fill="none" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="18" r="8" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 46v-3a8 8 0 018-8h16a8 8 0 018 8v3" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M38 14a8 8 0 010 15.5" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M52 46v-3a8 8 0 00-6-7.74" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 style="font-size:22px;font-weight:800;color:#1A1628;line-height:1.3;margin:0 0 12px;">Clinics with High Staff Turnover</h3>
+          <p style="font-size:17px;color:#6b7280;line-height:1.7;margin:0;">When people leave, the pressure shifts to the entire team. We help you reduce reactive recruitment and build more stable teams.</p>
+        </div>
+
+        <!-- Card 2 — Expanding organizations -->
+        <div style="background:#fff;border-radius:16px;padding:28px;display:flex;flex-direction:column;border:1px solid #eeeeee;box-shadow:0 4px 24px rgba(0,0,0,0.08);transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.13)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 24px rgba(0,0,0,0.08)'">
+          <div style="width:56px;height:56px;background:#f5f3ff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;flex-shrink:0;">
+            <svg width="28" height="28" fill="none" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="6,44 20,26 30,34 50,10" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="36,10 50,10 50,24" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 style="font-size:22px;font-weight:800;color:#1A1628;line-height:1.3;margin:0 0 12px;">Expanding Organizations</h3>
+          <p style="font-size:17px;color:#6b7280;line-height:1.7;margin:0;">Rapid growth demands the right people at the right time. We build recruitment processes that support clinic growth without blocking operations.</p>
+        </div>
+
+        <!-- Card 3 — Understaffed HR -->
+        <div style="background:#fff;border-radius:16px;padding:28px;display:flex;flex-direction:column;border:1px solid #eeeeee;box-shadow:0 4px 24px rgba(0,0,0,0.08);transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.13)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 24px rgba(0,0,0,0.08)'">
+          <div style="width:56px;height:56px;background:#f5f3ff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;flex-shrink:0;">
+            <svg width="28" height="28" fill="none" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+              <rect x="18" y="28" width="20" height="18" rx="2" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 28V44" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M46 28V44" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M28 28V20" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round"/>
+              <rect x="20" y="12" width="16" height="8" rx="2" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="4" y="20" width="12" height="8" rx="2" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="40" y="20" width="12" height="8" rx="2" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 28V24" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M46 28V24" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 style="font-size:22px;font-weight:800;color:#1A1628;line-height:1.3;margin:0 0 12px;">Understaffed HR Department</h3>
+          <p style="font-size:17px;color:#6b7280;line-height:1.7;margin:0;">Recruitment often ends up on managers' plates. We act as an extension of the team and take over the process from role definition to integration.</p>
+        </div>
+
+        <!-- Card 4 — Managers involved in recruitment -->
+        <div style="background:#fff;border-radius:16px;padding:28px;display:flex;flex-direction:column;border:1px solid #eeeeee;box-shadow:0 4px 24px rgba(0,0,0,0.08);transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 32px rgba(0,0,0,0.13)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 24px rgba(0,0,0,0.08)'">
+          <div style="width:56px;height:56px;background:#f5f3ff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:20px;flex-shrink:0;">
+            <svg width="28" height="28" fill="none" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="28" cy="28" r="20" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="28,16 28,28 36,34" stroke="#6B5CE7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 style="font-size:22px;font-weight:800;color:#1A1628;line-height:1.3;margin:0 0 12px;">Managers and Founders Directly Involved in Recruitment</h3>
+          <p style="font-size:17px;color:#6b7280;line-height:1.7;margin:0;">Interviews with irrelevant candidates consume valuable time. Through our selection process, only relevant candidates will reach your clinic.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <style>
+    .cui-grid-v2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 640px) {
+      .cui-grid-v2 { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- ====== SERVICES / CARDS ====== -->
+  <section id="services" style="padding: 80px 0; background: #ffffff;">
+
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:24px;">
+            <div style="width:40px;height:1px;background:#d1d5db;flex-shrink:0;"></div>
+            <span style="font-size:12px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:0.1em;">How we add value</span>
+          </div>
+        <h2 style="font-size:clamp(28px,4vw,42px);font-weight:800;line-height:1.2;color:#1A1628;letter-spacing:-0.02em;">Three ways we can work together</h2>
+      </div>
+
+      <div id="service-cards" style="display:flex;gap:24px;align-items:stretch;">
+
+        <!-- Card 1 — Recruitment Project -->
+        <div class="svc-card" style="
+          flex: 1;
+          background: #ffffff;
+          border: 1px solid #eeeeee;
+          border-radius: 12px;
+          padding: 32px;
+          box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+          transition: box-shadow 0.3s ease;
+          overflow: hidden;
+          min-width: 0;
+        " onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.14)'" onmouseout="this.style.boxShadow='0 4px 24px rgba(0,0,0,0.08)'">
+          <div style="width:48px;height:48px;background:rgba(91,79,207,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;flex-shrink:0;">
+            <svg class="w-6 h-6" style="color:#6B5CE7;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+          <h3 style="font-size:1.25rem;font-weight:800;color:#1A1628;margin-bottom:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Recruitment Project</h3>
+          <p style="color:#6b7280;font-size:17px;line-height:1.7;margin-bottom:24px;">
+            For clinics that need targeted support in filling a critical role. We manage the complete recruitment process, from role clarification to selection and presentation of relevant candidates.
+          </p>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:16px;">
+            <svg class="w-4 h-4" style="color:#5b4fcf;" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+            <span style="font-size:14px;color:#6b7280;">±3 weeks — average placement duration</span>
+          </div>
+          <div style="padding-top:16px;border-top:1px solid #e5e7eb;">
+            <span style="font-size:14px;font-weight:700;color:#1f2937;">Success fee — percentage of gross salary</span>
+            <p style="font-size:12px;color:#9ca3af;margin-top:4px;font-style:italic;">Ideal for one-time recruitment needs.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 — Recruitment Subscription (featured) -->
+        <div class="svc-card" style="
+          flex: 1;
+          background: #ffffff;
+          border: 2px solid #5b4fcf;
+          border-radius: 12px;
+          padding: 32px;
+          box-shadow: 0 8px 32px rgba(91,79,207,0.12);
+          transition: box-shadow 0.3s ease;
+          overflow: hidden;
+          min-width: 0;
+        " onmouseover="this.style.boxShadow='0 12px 40px rgba(91,79,207,0.22)'" onmouseout="this.style.boxShadow='0 8px 32px rgba(91,79,207,0.12)'">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;">
+            <div style="width:48px;height:48px;background:rgba(91,79,207,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg class="w-6 h-6" style="color:#6B5CE7;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+          </div>
+          <h3 style="font-size:1.25rem;font-weight:800;color:#1A1628;margin-bottom:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Recruitment Subscription</h3>
+          <p style="color:#6b7280;font-size:17px;line-height:1.7;margin-bottom:24px;">
+            For clinics that recruit constantly or are in growth. We act as an external extension of your team and provide continuous support in prioritizing roles, selection and organizing the recruitment process.
+          </p>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:16px;">
+            <svg class="w-4 h-4" style="color:#5b4fcf;" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+            <span style="font-size:14px;color:#6b7280;">Continuous and predictable support</span>
+          </div>
+          <div style="padding-top:16px;border-top:1px solid #e5e7eb;">
+            <span style="font-size:14px;font-weight:700;color:#1f2937;">Custom pricing</span>
+            <p style="font-size:12px;color:#9ca3af;margin-top:4px;font-style:italic;">Ideal for clinics with recurring recruitment needs.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 — Multiple Recruitment -->
+        <div class="svc-card" style="
+          flex: 1;
+          background: #ffffff;
+          border: 1px solid #eeeeee;
+          border-radius: 12px;
+          padding: 32px;
+          box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+          transition: box-shadow 0.3s ease;
+          overflow: hidden;
+          min-width: 0;
+        " onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.14)'" onmouseout="this.style.boxShadow='0 4px 24px rgba(0,0,0,0.08)'">
+          <div style="width:48px;height:48px;background:rgba(91,79,207,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;flex-shrink:0;">
+            <svg class="w-6 h-6" style="color:#6B5CE7;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+            </svg>
+          </div>
+          <h3 style="font-size:1.25rem;font-weight:800;color:#1A1628;margin-bottom:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Multiple Recruitment</h3>
+          <p style="color:#6b7280;font-size:17px;line-height:1.7;margin-bottom:24px;">
+            For clinics opening new locations, expanding their team or needing multiple recruitments in a short time. We manage projects with 3 to 12 roles, medical and operational.
+          </p>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:16px;">
+            <svg class="w-4 h-4" style="color:#5b4fcf;" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+            <span style="font-size:14px;color:#6b7280;">Packages for 3–12 roles</span>
+          </div>
+          <div style="padding-top:16px;border-top:1px solid #e5e7eb;">
+            <span style="font-size:14px;font-weight:700;color:#1f2937;">Custom pricing</span>
+            <p style="font-size:12px;color:#9ca3af;margin-top:4px;font-style:italic;">Flexible structure, adapted to your growth pace.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+  <!-- ====== HOW WE WORK ====== -->
+  <section id="cum-lucram" class="bg-white py-20 md:py-28" style="scroll-margin-top:80px;padding-bottom:40px;">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+        <!-- Left: Image -->
+        <div>
+          <img
+            src="images/cum-lucram.jpeg"
+            alt="How We Work - Divizia Medicala"
+            style="width:100%;height:520px;object-fit:cover;border-radius:16px;display:block;"
+          />
+        </div>
+
+        <!-- Right: Text -->
+        <div>
+          <!-- Small label with horizontal line -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+            <div style="width:40px;height:1px;background:#d1d5db;flex-shrink:0;"></div>
+            <span style="font-size:12px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:0.1em;">HOW WE WORK</span>
+          </div>
+
+          <!-- Headline -->
+          <h2 style="font-size:clamp(28px,3.5vw,44px);font-weight:800;line-height:1.2;letter-spacing:-0.025em;color:#1A1628;margin-bottom:28px;">
+            We act as an extension of your team.
+          </h2>
+
+          <!-- Paragraphs -->
+          <p style="color:#6b7280;font-size:17px;line-height:1.7;margin-bottom:18px;">
+            We start by understanding the clinic's structure, how the team is organized and the challenges encountered in recruitment. We analyze the clinic's market positioning, candidate expectations and the reasons why certain roles are harder to fill or retain long-term.
+          </p>
+          <p style="color:#6b7280;font-size:17px;line-height:1.7;margin-bottom:18px;">
+            Starting from here, we define the recruitment approach and identify candidates who fit both the role requirements and the organization's working style.
+          </p>
+          <p style="color:#6b7280;font-size:17px;line-height:1.7;margin-bottom:24px;">
+            We manage the relationship with candidates throughout the entire process, evaluating experience, motivation and compatibility with the team, so that only relevant profiles aligned with the clinic's budget and expectations reach the interview.
+          </p>
+
+          <!-- Closing sentence -->
+          <p style="font-size:17px;font-weight:700;color:#6B5CE7;line-height:1.6;">
+            This way, the management team can focus their time on coordinating operations, patient experience and clinic development.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====== PROCESS STEPS ====== -->
+  <section class="process-steps-section" style="background:#f8f7ff;padding:0px 0 80px;text-align:center;width:100%;">
+    <div class="process-steps-container" style="max-width:1300px;margin:0 auto;padding:48px 24px;">
+        <h2 style="font-size:18px;font-weight:700;color:#10b981 !important;text-align:center;letter-spacing:-0.025em;line-height:1.3;margin:0 0 40px;">
+          We help you save up to 10 hours for each active role.
+        </h2>
+        <div class="steps-grid-6">
+
+          <!-- Step 1 -->
+          <div class="step-card-new">
+            <div style="font-size:32px;font-weight:700;color:#5b4fcf;text-align:center !important;width:100% !important;display:block !important;margin-bottom:12px;">1</div>
+            <h3 style="font-size:17px;font-weight:800;color:#1A1628;line-height:1.3;margin:0;">We understand the clinic's context</h3>
+            <p style="font-size:17px;color:#6b7280;line-height:1.7;margin:0;">We discuss the team, recruitment challenges and the real context of the role, to understand what type of candidate can integrate successfully.</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card-new">
+            <div style="font-size:32px;font-weight:700;color:#5b4fcf;text-align:center !important;width:100% !important;display:block !important;margin-bottom:12px;">2</div>
+            <h3 style="font-size:17px;font-weight:800;color:#1A1628;line-height:1.3;margin:0;">We define the right profile</h3>
+            <p style="font-size:17px;color:#6b7280;line-height:1.7;margin:0;">We clarify responsibilities, expectations and salary level, so the process starts with clear objectives aligned with the market.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card-new">
+            <div style="font-size:32px;font-weight:700;color:#5b4fcf;text-align:center !important;width:100% !important;display:block !important;margin-bottom:12px;">3</div>
+            <h3 style="font-size:17px;font-weight:800;color:#1A1628;line-height:1.3;margin:0;">We identify and attract relevant candidates</h3>
+            <p style="font-size:17px;color:#6b7280;line-height:1.7;margin:0;">We directly approach candidates who fit the clinic's context and present the opportunity in a clear and relevant way for the target profile.</p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-card-new">
+            <div style="font-size:32px;font-weight:700;color:#5b4fcf;text-align:center !important;width:100% !important;display:block !important;margin-bottom:12px;">4</div>
+            <h3 style="font-size:17px;font-weight:800;color:#1A1628;line-height:1.3;margin:0;">We filter and evaluate candidates</h3>
+            <p style="font-size:17px;color:#6b7280;line-height:1.7;margin:0;">We manage initial conversations and evaluate experience, motivation and compatibility with your clinic's context.</p>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="step-card-new">
+            <div style="font-size:32px;font-weight:700;color:#5b4fcf;text-align:center !important;width:100% !important;display:block !important;margin-bottom:12px;">5</div>
+            <h3 style="font-size:17px;font-weight:800;color:#1A1628;line-height:1.3;margin:0;">We coordinate the selection process</h3>
+            <p style="font-size:17px;color:#6b7280;line-height:1.7;margin:0;">We maintain communication with the clinic team and candidates throughout interviews, feedback and decision stages.</p>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="step-card-new">
+            <div style="font-size:32px;font-weight:700;color:#5b4fcf;text-align:center !important;width:100% !important;display:block !important;margin-bottom:12px;">6</div>
+            <h3 style="font-size:17px;font-weight:800;color:#1A1628;line-height:1.3;margin:0;">We provide support through integration</h3>
+            <p style="font-size:17px;color:#6b7280;line-height:1.7;margin:0;">We remain involved in the offer and onboarding stage, so that the candidate's transition into the team is as clear and stable as possible.</p>
+          </div>
+
+        </div>
+
+        <p class="dark-cta-title" style="font-size:32px;font-weight:700;color:#5b4fcf;text-align:center;margin-left:auto;margin-right:auto;max-width:700px;margin-top:64px;margin-bottom:32px;line-height:1.4;">
+          Let's discuss your clinic's needs.
+        </p>
+        <div style="text-align:center;margin-bottom:16px;">
+          <a href="#contact" class="btn-orange cta-glow" style="font-size:16px;padding:14px 36px;background:#10b981;border-radius:8px;display:block;margin:0 auto;text-align:center;">Schedule a call</a>
+        </div>
+
+    </div>
+  </section>
+  <style>
+    .steps-grid-6 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .step-card-new {
+      background: #ffffff;
+      border: 1px solid #eeeeee;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 14px;
+    }
+    .step-card-new > div[style*="font-size:28px"] {
+      align-self: center;
+    }
+    @media (max-width: 900px) {
+      .steps-grid-6 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .steps-grid-6 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .process-steps-section {
+        padding-top: 0px !important;
+      }
+      .process-steps-container {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 48px 32px;
+      }
+      .dark-cta-title {
+        font-size: 28px !important;
+        text-align: center !important;
+        line-height: 1.3 !important;
+      }
+      .process-steps-container h2 {
+        font-size: 26px !important;
+        line-height: 1.3;
+      }
+    }
+  </style>
+
+  <!-- ====== CONTACT ====== -->
+  <section id="contact">
+    <!-- Cover image -->
+    <div style="width:100%;overflow:hidden;">
+      <img src="images/contact-3.png" alt="Contact Divizia Medicala" style="width:100%; height:500px; object-fit:cover; object-position: center center; display:block;">
+    </div>
+
+    <!-- 3-column info -->
+    <div style="background:#f8f8f8;padding:60px 24px;">
+      <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:80px;align-items:start;">
+
+        <!-- LEFT: Contact info -->
+        <div style="padding:0;">
+          <h3 style="font-size:22px;font-weight:800;color:#1A1628;margin:0 0 24px;letter-spacing:-0.02em;">Divizia Medicală</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px;">
+            <li style="display:flex;align-items:center;gap:12px;font-size:16px;color:#4B5563;">
+              <svg width="18" height="18" fill="none" stroke="#6B5CE7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              recrutare@diviziamedicala.ro
+            </li>
+            <li style="display:flex;align-items:flex-start;gap:12px;font-size:16px;color:#4B5563;">
+              <svg width="18" height="18" fill="none" stroke="#6B5CE7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" style="margin-top:2px;flex-shrink:0;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Global City, Șoseaua București Nord 10, Pipera
+            </li>
+          </ul>
+          <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: center; margin-left: -20px;">
+            <img src="brand_assets/Logo Divizia Medicala.png" alt="Divizia Medicala" style="height: 245px; width: auto; display: block;">
+          </div>
+        </div>
+
+        <!-- MIDDLE: Contact form -->
+        <div style="padding:0;">
+          <h3 style="font-size:22px;font-weight:800;color:#1A1628;margin:0 0 24px;letter-spacing:-0.02em;line-height:1.3;">Are you recruiting for your clinic?<br>Let's talk.</h3>
+          <form style="display:flex;flex-direction:column;gap:14px;">
+            <input type="text" placeholder="Name" style="width:100%;padding:11px 0;border:none;border-bottom:1.5px solid #D1D5DB;background:transparent;font-size:16px;color:#1A1628;outline:none;font-family:inherit;" onfocus="this.style.borderBottomColor='#6B5CE7'" onblur="this.style.borderBottomColor='#D1D5DB'" />
+            <input type="email" placeholder="Email" style="width:100%;padding:11px 0;border:none;border-bottom:1.5px solid #D1D5DB;background:transparent;font-size:16px;color:#1A1628;outline:none;font-family:inherit;" onfocus="this.style.borderBottomColor='#6B5CE7'" onblur="this.style.borderBottomColor='#D1D5DB'" />
+            <input type="tel" placeholder="Phone" style="width:100%;padding:11px 0;border:none;border-bottom:1.5px solid #D1D5DB;background:transparent;font-size:16px;color:#1A1628;outline:none;font-family:inherit;" onfocus="this.style.borderBottomColor='#6B5CE7'" onblur="this.style.borderBottomColor='#D1D5DB'" />
+            <textarea placeholder="Message" rows="4" style="width:100%;padding:11px 0;border:none;border-bottom:1.5px solid #D1D5DB;background:transparent;font-size:16px;color:#1A1628;outline:none;resize:none;font-family:inherit;" onfocus="this.style.borderBottomColor='#6B5CE7'" onblur="this.style.borderBottomColor='#D1D5DB'"></textarea>
+            <button type="submit" style="width:100%;padding:14px;background:#10b981;color:#fff;font-size:16px;font-weight:700;border:none;border-radius:8px;cursor:pointer;letter-spacing:0.01em;transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#10b981'" onmousedown="this.style.transform='scale(0.98)'" onmouseup="this.style.transform='scale(1)'">Send message</button>
+          </form>
+        </div>
+
+        <!-- RIGHT: Social -->
+        <div style="padding-left:50px;display:flex;flex-direction:column;gap:24px;">
+          <h3 style="font-size:22px;font-weight:800;color:#1A1628;margin:0;letter-spacing:-0.02em;">Social Media</h3>
+          <a href="https://www.linkedin.com/in/cristian-t-11b901b3/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#1A1628;font-size:16px;font-weight:600;transition:color 0.2s;" onmouseover="this.style.color='#6B5CE7'" onmouseout="this.style.color='#1A1628'">
+            <svg width="22" height="22" fill="#6B5CE7" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            Follow us on LinkedIn
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="bg-white border-t border-gray-100" style="padding:20px 60px;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-family:'Nunito',sans-serif;font-size:14px;color:#6b7280;">© 2026 Divizia Medicala. All rights reserved.</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:14px;color:#6b7280;">
+      <a href="politica.html" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#5b4fcf'" onmouseout="this.style.color='#6b7280'">Privacy policy</a>
+      <span> | </span>
+      <a href="termeni.html" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#5b4fcf'" onmouseout="this.style.color='#6b7280'">Terms and conditions</a>
+    </span>
+  </footer>
+
+  <script>
+    // Sticky nav shadow
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('nav-scrolled', window.scrollY > 10);
+    });
+  </script>
+
+</body>
+</html>

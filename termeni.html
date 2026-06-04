@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Termeni și Condiții – Divizia Medicală</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      section, div, nav, footer, header {
+        max-width: 100% !important;
+      }
+
+      img {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+
+      [style*="min-width"],
+      [style*="width: "] {
+        min-width: unset !important;
+      }
+    }
+
+    body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, span, li {
+      font-family: 'Nunito', sans-serif;
+    }
+
+    :root {
+      --purple: #6B5CE7;
+      --purple-dark: #5647CF;
+      --navy: #1A1628;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --light-bg: #f9f9f9;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-family: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    /* Utility bar */
+    .util-bar {
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 13px;
+      color: #374151;
+    }
+
+    /* Nav */
+    .main-nav {
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-link {
+      font-size: 21px;
+      font-weight: 600;
+      color: #374151;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--purple); }
+
+    .btn-orange {
+      background: var(--purple);
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 6px;
+      padding: 12px 28px;
+      display: inline-block;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-orange:hover { background: var(--purple-dark); transform: translateY(-1px); }
+    .btn-orange:active { transform: translateY(0); }
+
+    /* Sticky nav shadow on scroll */
+    .nav-scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+
+    /* Mobile menu toggle */
+    #mobile-menu { display: none; }
+    @media (max-width: 768px) {
+      #mobile-menu.open { display: block; }
+
+      .main-nav {
+        padding: 4px 0 !important;
+        min-height: 90px !important;
+      }
+      .main-nav .max-w-7xl {
+        position: relative;
+        justify-content: flex-end;
+        min-height: 90px !important;
+      }
+      .main-nav .max-w-7xl > a:first-child {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .main-nav .max-w-7xl > a:first-child img {
+        height: 80px !important;
+        width: auto !important;
+        object-fit: contain !important;
+      }
+      .main-nav .max-w-7xl {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        width: 100% !important;
+      }
+      .main-nav button {
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+      .util-bar {
+        overflow: visible !important;
+      }
+      .util-bar .max-w-7xl {
+        font-size: 12px !important;
+        padding: 4px 16px !important;
+        width: 100% !important;
+        overflow: visible !important;
+      }
+      footer.bg-white {
+        padding: 16px !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        text-align: center !important;
+      }
+    }
+
+    @keyframes subtle-glow {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+      50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.15); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.0); }
+    }
+
+    .cta-glow {
+      animation: subtle-glow 2s ease-in-out infinite;
+    }
+
+    /* Terms page specific */
+    .terms-content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+    }
+
+    .terms-content h1 {
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .terms-content .last-updated {
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 48px;
+    }
+
+    .terms-content h2 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .terms-content h2 .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background: #f5f3ff;
+      color: var(--purple);
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .terms-content p {
+      font-size: 16px;
+      color: #4B5563;
+      line-height: 1.75;
+      margin-bottom: 16px;
+      text-align: left !important;
+    }
+
+    .terms-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .terms-content ul li {
+      font-size: 16px;
+      color: #4B5563;
+      line-height: 1.7;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .terms-content ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 7px;
+      height: 7px;
+      background: var(--purple);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    .terms-divider {
+      border: none;
+      border-top: 1px solid #f0efff;
+      margin: 0;
+    }
+
+    .terms-content a {
+      color: var(--purple);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .terms-content a:hover { opacity: 0.75; }
+
+    .terms-content .contact-block {
+      background: #f8f7ff;
+      border: 1px solid #e9e7fd;
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-top: 16px;
+    }
+
+    .terms-content .contact-block p {
+      margin-bottom: 8px;
+    }
+
+    .terms-content .contact-block p:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== UTILITY BAR ====== -->
+  <div class="util-bar">
+    <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+      <div class="flex items-center gap-6">
+        <a href="index.html" class="flex items-center gap-1.5 text-[13px] text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          recrutare@diviziamedicala.ro
+        </a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://www.linkedin.com/in/cristian-t-11b901b3/" target="_blank" rel="noopener noreferrer" class="text-[13px] text-gray-500 hover:text-gray-800 transition-colors">LinkedIn</a>
+        <a href="en.html" class="text-[13px] text-gray-500 hover:text-gray-800 transition-colors">EN</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== MAIN NAV ====== -->
+  <nav class="main-nav" id="mainNav" style="padding: 10px 0 !important; min-height: 60px !important;">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between" style="padding-top:0!important;padding-bottom:0!important;min-height:60px;">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+        <img src="brand_assets/Logo Divizia Medicala.png" alt="Divizia Medicala" style="height:150px;width:auto;" />
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link">Acasă</a>
+        <a href="index.html#about" class="nav-link">Despre noi</a>
+        <a href="index.html#services" class="nav-link">Servicii</a>
+        <a href="index.html#cum-lucram" class="nav-link">Cum lucrăm</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+      </div>
+
+      <!-- CTA + mobile toggle -->
+      <div class="flex items-center gap-4">
+        <a href="index.html#contact" class="btn-orange cta-glow hidden md:inline-block" style="border-radius:8px;background:#10b981;">Hai să vorbim</a>
+        <button class="md:hidden p-2 text-gray-600" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden border-t border-gray-100 bg-white px-6 py-4 space-y-3">
+      <a href="index.html" class="block nav-link">Acasă</a>
+      <a href="index.html#about" class="block nav-link">Despre noi</a>
+      <a href="index.html#services" class="block nav-link">Servicii</a>
+      <a href="index.html#cum-lucram" class="block nav-link">Cum lucrăm</a>
+      <a href="index.html#contact" class="block nav-link">Contact</a>
+      <a href="index.html#contact" class="btn-orange cta-glow inline-block" style="border-radius:8px;margin-top:8px;background:#10b981;">Hai să vorbim</a>
+    </div>
+  </nav>
+
+  <!-- ====== PAGE HEADER ====== -->
+  <div style="background:#f8f7ff;border-bottom:1px solid #f0efff;padding:40px 24px 36px;">
+    <div style="max-width:860px;margin:0 auto;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <div style="width:40px;height:1px;background:#d1d5db;flex-shrink:0;"></div>
+        <span style="font-size:12px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:0.1em;">Legal</span>
+      </div>
+      <h1 style="font-size:clamp(30px,4vw,46px);font-weight:800;color:#1A1628;letter-spacing:-0.025em;line-height:1.2;margin-bottom:10px;">Termeni și Condiții</h1>
+      <p style="font-size:15px;color:#9ca3af;margin:0;text-align:left;">Ultima actualizare: 4 iunie 2026</p>
+    </div>
+  </div>
+
+  <!-- ====== TERMS CONTENT ====== -->
+  <main>
+    <div class="terms-content">
+
+      <p>Vă rugăm să citiți cu atenție acești Termeni și Condiții înainte de a utiliza site-ul web <strong>diviziamedicala.ro</strong> (denumit în continuare „Site-ul") operat de <strong>Divizia Medicală</strong>. Prin accesarea sau utilizarea Site-ului, acceptați să fiți legat de acești Termeni și Condiții. Dacă nu sunteți de acord cu oricare dintre prevederile acestora, vă rugăm să nu utilizați Site-ul.</p>
+
+      <hr class="terms-divider" style="margin-top:32px;">
+
+      <!-- Section 1 -->
+      <h2><span class="section-num">1</span> Descrierea serviciilor</h2>
+      <p>Divizia Medicală este o companie specializată în recrutarea de personal medical și administrativ pentru clinici și spitale private din România. Prin intermediul Site-ului, oferim informații despre serviciile noastre și facilităm contactul cu potențiali clienți.</p>
+      <p>Serviciile disponibile includ, fără a se limita la:</p>
+      <ul>
+        <li><strong>Proiecte de recrutare</strong> — suport punctual pentru ocuparea unui rol specific, gestionând procesul complet de la clarificarea profilului până la selecția candidaților relevanți.</li>
+        <li><strong>Abonament de recrutare</strong> — parteneriat continuu cu clinica, în care acționăm ca extensie externă a echipei de HR pentru nevoi recurente de recrutare.</li>
+        <li><strong>Recrutare multiplă</strong> — proiecte dedicate clinicilor care deschid locații noi sau au nevoie de ocuparea mai multor roluri într-un interval scurt de timp.</li>
+      </ul>
+      <p>Informațiile prezentate pe Site au caracter exclusiv informativ și nu constituie o ofertă contractuală fermă. Termenii specifici ai colaborării se stabilesc printr-un contract separat, semnat între Divizia Medicală și client.</p>
+
+      <hr class="terms-divider">
+
+      <!-- Section 2 -->
+      <h2><span class="section-num">2</span> Utilizarea site-ului</h2>
+      <p>Prin accesarea Site-ului, vă angajați să îl utilizați exclusiv în scopuri legale și în conformitate cu prezenții Termeni și Condiții. Este interzisă utilizarea Site-ului în următoarele moduri:</p>
+      <ul>
+        <li>Transmiterea de conținut ilegal, ofensator, înșelător sau care încalcă drepturile terților.</li>
+        <li>Utilizarea de instrumente automate (boți, scrapers, crawlere) pentru colectarea datelor fără acordul prealabil scris al Diviziei Medicale.</li>
+        <li>Tentative de acces neautorizat la sistemele, serverele sau bazele de date asociate Site-ului.</li>
+        <li>Reproducerea, distribuirea sau modificarea conținutului Site-ului fără permisiunea scrisă a Diviziei Medicale.</li>
+        <li>Orice acțiune care ar putea perturba funcționarea normală a Site-ului sau infrastructurii tehnice aferente.</li>
+      </ul>
+      <p>Divizia Medicală își rezervă dreptul de a restricționa sau suspenda accesul la Site în cazul încălcării acestor prevederi, fără notificare prealabilă.</p>
+
+      <hr class="terms-divider">
+
+      <!-- Section 3 -->
+      <h2><span class="section-num">3</span> Proprietate intelectuală</h2>
+      <p>Tot conținutul disponibil pe acest Site — inclusiv, dar fără a se limita la texte, grafice, logo-uri, pictograme, imagini, clipuri audio și video, programe software — constituie proprietatea exclusivă a Diviziei Medicale sau a furnizorilor săi de conținut și este protejat de legislația română și internațională privind drepturile de autor și proprietatea intelectuală.</p>
+      <p>Este strict interzisă copierea, reproducerea, distribuirea, publicarea, afișarea, transmiterea sau orice altă formă de utilizare a conținutului Site-ului fără acordul scris prealabil al Diviziei Medicale.</p>
+      <p>Marca „Divizia Medicală" și logo-ul asociat sunt mărci înregistrate sau în curs de înregistrare. Orice utilizare neautorizată este interzisă și poate atrage răspunderea juridică.</p>
+
+      <hr class="terms-divider">
+
+      <!-- Section 4 -->
+      <h2><span class="section-num">4</span> Limitarea răspunderii</h2>
+      <p>Divizia Medicală depune eforturi rezonabile pentru a asigura acuratețea și actualitatea informațiilor prezentate pe Site. Cu toate acestea, nu garantează că informațiile sunt complete, corecte sau actualizate în orice moment.</p>
+      <p>În limita permisă de lege, Divizia Medicală nu își asumă răspunderea pentru:</p>
+      <ul>
+        <li>Erori sau omisiuni din conținutul Site-ului.</li>
+        <li>Întreruperi sau indisponibilitatea temporară a Site-ului din cauze tehnice sau de altă natură.</li>
+        <li>Pierderi sau daune de orice natură rezultate din accesarea sau utilizarea Site-ului ori a informațiilor conținute.</li>
+        <li>Conținutul site-urilor terțe accesibile prin link-uri de pe Site-ul nostru — acestea sunt furnizate exclusiv pentru comoditatea utilizatorilor și nu implică nicio aprobare sau responsabilitate din partea Diviziei Medicale.</li>
+        <li>Virușii informatici sau alte programe dăunătoare care pot afecta echipamentul utilizatorului în urma accesării Site-ului, în condițiile în care utilizatorul nu a respectat măsurile de securitate recomandate.</li>
+      </ul>
+      <p>Site-ul este furnizat „ca atare" și „după cum este disponibil", fără garanții de niciun fel, exprese sau implicite.</p>
+
+      <hr class="terms-divider">
+
+      <!-- Section 5 -->
+      <h2><span class="section-num">5</span> Confidențialitate și protecția datelor</h2>
+      <p>Divizia Medicală acordă o importanță deosebită protecției datelor cu caracter personal ale utilizatorilor Site-ului. Colectarea, prelucrarea și stocarea datelor personale se realizează în conformitate cu Regulamentul (UE) 2016/679 (GDPR) și legislația națională aplicabilă.</p>
+      <p>Prin utilizarea formularului de contact disponibil pe Site, furnizați date cu caracter personal (nume, adresă de e-mail, număr de telefon, mesaj) necesare pentru a putea răspunde solicitării dumneavoastră. Aceste date nu vor fi transmise către terți fără acordul dumneavoastră și vor fi utilizate exclusiv în scopul pentru care au fost furnizate.</p>
+      <p>Pentru informații detaliate privind drepturile dumneavoastră, tipurile de date colectate, scopurile prelucrării și măsurile de securitate implementate, vă rugăm să consultați <a href="politica.html">Politica noastră de confidențialitate</a>.</p>
+
+      <hr class="terms-divider">
+
+      <!-- Section 6 -->
+      <h2><span class="section-num">6</span> Modificări ale termenilor</h2>
+      <p>Divizia Medicală își rezervă dreptul de a modifica, actualiza sau înlocui acești Termeni și Condiții în orice moment, fără notificare prealabilă. Versiunea actualizată va fi publicată pe această pagină, cu indicarea datei ultimei modificări.</p>
+      <p>Vă recomandăm să verificați periodic această pagină pentru a fi la curent cu eventualele modificări. Continuarea utilizării Site-ului după publicarea modificărilor constituie acceptarea acestora.</p>
+      <p>Dacă oricare dintre prevederile acestor Termeni și Condiții este considerată nevalidă sau inaplicabilă de către o instanță competentă, celelalte prevederi rămân în vigoare și produc pe deplin efecte juridice.</p>
+      <p>Prezenții Termeni și Condiții sunt guvernați și interpretați în conformitate cu legislația română. Orice litigiu rezultat din sau în legătură cu utilizarea Site-ului va fi supus jurisdicției exclusive a instanțelor judecătorești competente din România.</p>
+
+      <hr class="terms-divider">
+
+      <!-- Section 7 -->
+      <h2><span class="section-num">7</span> Date de contact</h2>
+      <p>Dacă aveți întrebări, nelămuriri sau solicitări cu privire la acești Termeni și Condiții, ne puteți contacta prin oricare dintre metodele de mai jos:</p>
+
+      <div class="contact-block">
+        <p><strong>Divizia Medicală</strong></p>
+        <p>
+          <svg style="display:inline;vertical-align:middle;margin-right:8px;" width="16" height="16" fill="none" stroke="#6B5CE7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:recrutare@diviziamedicala.ro">recrutare@diviziamedicala.ro</a>
+        </p>
+        <p>
+          <svg style="display:inline;vertical-align:middle;margin-right:8px;" width="16" height="16" fill="none" stroke="#6B5CE7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Global City, Șoseaua București Nord 10, Pipera
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="bg-white border-t border-gray-100" style="padding:20px 60px;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-family:'Nunito',sans-serif;font-size:14px;color:#6b7280;">© 2026 Divizia Medicala. Toate drepturile rezervate.</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:14px;color:#6b7280;">
+      <a href="politica.html" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#5b4fcf'" onmouseout="this.style.color='#6b7280'">Politică de confidențialitate</a>
+      <span> | </span>
+      <a href="termeni.html" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#5b4fcf'" onmouseout="this.style.color='#6b7280'">Termeni și condiții</a>
+    </span>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('nav-scrolled', window.scrollY > 10);
+    });
+  </script>
+
+</body>
+</html>

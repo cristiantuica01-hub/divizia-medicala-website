@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politică de Confidențialitate – Divizia Medicală</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      section, div, nav, footer, header {
+        max-width: 100% !important;
+      }
+
+      img {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+
+      [style*="min-width"],
+      [style*="width: "] {
+        min-width: unset !important;
+      }
+    }
+
+    body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea, span, li {
+      font-family: 'Nunito', sans-serif;
+    }
+
+    :root {
+      --purple: #6B5CE7;
+      --purple-dark: #5647CF;
+      --navy: #1A1628;
+      --text: #1a1a1a;
+      --muted: #6b7280;
+      --light-bg: #f9f9f9;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      font-family: 'Nunito', ui-sans-serif, system-ui, sans-serif;
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    .util-bar {
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 13px;
+      color: #374151;
+    }
+
+    .main-nav {
+      background: #fff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-link {
+      font-size: 21px;
+      font-weight: 600;
+      color: #374151;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--purple); }
+
+    .btn-orange {
+      background: var(--purple);
+      color: #fff;
+      font-weight: 700;
+      font-size: 15px;
+      border-radius: 6px;
+      padding: 12px 28px;
+      display: inline-block;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-orange:hover { background: var(--purple-dark); transform: translateY(-1px); }
+    .btn-orange:active { transform: translateY(0); }
+
+    .nav-scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+
+    @keyframes subtle-glow {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+      50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.15); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.0); }
+    }
+    .cta-glow {
+      animation: subtle-glow 2s ease-in-out infinite;
+    }
+
+    #mobile-menu { display: none; }
+    @media (max-width: 768px) {
+      #mobile-menu.open { display: block; }
+
+      .main-nav {
+        padding: 4px 0 !important;
+        min-height: 90px !important;
+      }
+      .main-nav .max-w-7xl {
+        position: relative;
+        justify-content: flex-end;
+        min-height: 90px !important;
+      }
+      .main-nav .max-w-7xl > a:first-child {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .main-nav .max-w-7xl > a:first-child img {
+        height: 80px !important;
+        width: auto !important;
+        object-fit: contain !important;
+      }
+      .main-nav .max-w-7xl {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        width: 100% !important;
+      }
+      .main-nav button {
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+      .util-bar {
+        overflow: visible !important;
+      }
+      .util-bar .max-w-7xl {
+        font-size: 12px !important;
+        padding: 4px 16px !important;
+        width: 100% !important;
+        overflow: visible !important;
+      }
+      footer.bg-white {
+        padding: 16px !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        text-align: center !important;
+      }
+    }
+
+    /* Privacy page content styles */
+    .policy-content h2 {
+      font-size: clamp(20px, 2.5vw, 26px);
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      margin-top: 48px;
+    }
+    .policy-content h2:first-of-type {
+      margin-top: 0;
+    }
+    .policy-content p {
+      font-size: 17px;
+      color: #4B5563;
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .policy-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .policy-content ul li {
+      font-size: 17px;
+      color: #4B5563;
+      line-height: 1.7;
+      padding-left: 24px;
+      position: relative;
+    }
+    .policy-content ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      background: var(--purple);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .policy-content a {
+      color: var(--purple);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .policy-content a:hover {
+      text-decoration: underline;
+    }
+    .section-divider {
+      width: 48px;
+      height: 4px;
+      background: var(--purple);
+      border-radius: 2px;
+      margin-bottom: 32px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== UTILITY BAR ====== -->
+  <div class="util-bar">
+    <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+      <div class="flex items-center gap-6">
+        <a href="#" class="flex items-center gap-1.5 text-[13px] text-gray-500 hover:text-gray-800 transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          recrutare@diviziamedicala.ro
+        </a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://www.linkedin.com/in/cristian-t-11b901b3/" target="_blank" rel="noopener noreferrer" class="text-[13px] text-gray-500 hover:text-gray-800 transition-colors">LinkedIn</a>
+        <a href="en.html" class="text-[13px] text-gray-500 hover:text-gray-800 transition-colors">EN</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== MAIN NAV ====== -->
+  <nav class="main-nav" id="mainNav" style="padding: 10px 0 !important; min-height: 60px !important;">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between" style="padding-top:0!important;padding-bottom:0!important;min-height:60px;">
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+        <img src="brand_assets/Logo Divizia Medicala.png" alt="Divizia Medicala" style="height:150px;width:auto;" />
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link">Acasă</a>
+        <a href="index.html#about" class="nav-link">Despre noi</a>
+        <a href="index.html#services" class="nav-link">Servicii</a>
+        <a href="index.html#cum-lucram" class="nav-link">Cum lucrăm</a>
+        <a href="index.html#contact" class="nav-link">Contact</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="index.html#contact" class="btn-orange cta-glow hidden md:inline-block" style="border-radius:8px;background:#10b981;">Hai să vorbim</a>
+        <button class="md:hidden p-2 text-gray-600" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden border-t border-gray-100 bg-white px-6 py-4 space-y-3">
+      <a href="index.html" class="block nav-link">Acasă</a>
+      <a href="index.html#about" class="block nav-link">Despre noi</a>
+      <a href="index.html#services" class="block nav-link">Servicii</a>
+      <a href="index.html#cum-lucram" class="block nav-link">Cum lucrăm</a>
+      <a href="index.html#contact" class="block nav-link">Contact</a>
+      <a href="index.html#contact" class="btn-orange cta-glow inline-block" style="border-radius:8px;margin-top:8px;background:#10b981;">Hai să vorbim</a>
+    </div>
+  </nav>
+
+  <!-- ====== PAGE HEADER ====== -->
+  <section style="background: linear-gradient(135deg, #1A1628 0%, #2D2357 100%); padding: 80px 24px 64px;">
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:24px;">
+        <div style="width:40px;height:1px;background:rgba(255,255,255,0.3);flex-shrink:0;"></div>
+        <span style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.1em;">Informații Legale</span>
+        <div style="width:40px;height:1px;background:rgba(255,255,255,0.3);flex-shrink:0;"></div>
+      </div>
+      <h1 style="font-size:clamp(32px,4.5vw,52px);font-weight:800;line-height:1.15;letter-spacing:-0.025em;color:#fff;margin-bottom:20px;">Politică de Confidențialitate</h1>
+      <p style="font-size:17px;color:rgba(255,255,255,0.6);line-height:1.7;">Última actualizare: 4 iunie 2026</p>
+    </div>
+  </section>
+
+  <!-- ====== POLICY CONTENT ====== -->
+  <section style="background: #fff; padding: 80px 24px 100px;">
+    <div style="max-width: 800px; margin: 0 auto;" class="policy-content">
+
+      <p>
+        Divizia Medicală, denumită în continuare „noi" sau „Operatorul", se angajează să protejeze confidențialitatea și securitatea datelor personale ale utilizatorilor care accesează site-ul nostru web sau ne contactează în legătură cu serviciile noastre de recrutare. Prezenta politică descrie ce date colectăm, cum le utilizăm și care sunt drepturile dumneavoastră în conformitate cu Regulamentul (UE) 2016/679 privind protecția datelor cu caracter personal (GDPR).
+      </p>
+
+      <h2>1. Identitatea Operatorului</h2>
+      <p>
+        <strong>Denumire:</strong> Divizia Medicală<br/>
+        <strong>Email de contact pentru protecția datelor:</strong> <a href="mailto:recrutare@diviziamedicala.ro">recrutare@diviziamedicala.ro</a><br/>
+        <strong>Adresă:</strong> Global City, Șoseaua București Nord 10, Pipera, București, România
+      </p>
+
+      <h2>2. Ce Date Colectăm</h2>
+      <p>Prin intermediul formularului de contact de pe site-ul nostru, colectăm următoarele date cu caracter personal:</p>
+      <ul>
+        <li><strong>Numele și prenumele</strong> — pentru a putea comunica personalizat cu dumneavoastră.</li>
+        <li><strong>Adresa de e-mail</strong> — pentru a răspunde solicitărilor primite.</li>
+        <li><strong>Numărul de telefon</strong> — pentru a putea programa o discuție telefonică, dacă este cazul.</li>
+        <li><strong>Mesajul transmis</strong> — conținutul solicitării dumneavoastră privind serviciile de recrutare.</li>
+      </ul>
+      <p>Nu colectăm date sensibile (ex. stare de sănătate, origine etnică, opinii politice) prin intermediul site-ului.</p>
+
+      <h2>3. Scopul și Temeiul Juridic al Prelucrării</h2>
+      <p>Datele colectate prin formularul de contact sunt prelucrate exclusiv în următoarele scopuri:</p>
+      <ul>
+        <li><strong>Răspuns la solicitări de recrutare</strong> — pentru a vă contacta în legătură cu nevoile dumneavoastră de recrutare medicală. Temeiul juridic: interesul legitim al operatorului (art. 6 alin. 1 lit. f GDPR) și executarea unui contract sau a unor măsuri precontractuale (art. 6 alin. 1 lit. b GDPR).</li>
+        <li><strong>Comunicare comercială</strong> — doar cu consimțământul dumneavoastră explicit, în cazul în care optați să fiți contactat cu informații despre serviciile noastre. Temeiul juridic: consimțământ (art. 6 alin. 1 lit. a GDPR).</li>
+      </ul>
+      <p>Nu utilizăm datele dumneavoastră în scopuri de marketing de masă și nu le transmitem unor terțe părți fără acordul dumneavoastră.</p>
+
+      <h2>4. Stocarea și Securitatea Datelor</h2>
+      <p>Datele dumneavoastră personale sunt stocate în sisteme securizate, accesibile exclusiv personalului autorizat al Diviziei Medicale. Aplicăm măsuri tehnice și organizatorice adecvate pentru a preveni accesul neautorizat, pierderea sau divulgarea datelor.</p>
+      <p>Datele colectate prin formularul de contact sunt păstrate pe o perioadă de maximum <strong>2 ani</strong> de la ultima interacțiune, după care sunt șterse sau anonimizate, cu excepția cazului în care obligațiile legale impun o perioadă mai lungă de arhivare.</p>
+      <p>Nu transferăm datele dumneavoastră în afara Spațiului Economic European (SEE) fără a ne asigura că există garanții adecvate de protecție.</p>
+
+      <h2>5. Drepturile Dumneavoastră (GDPR)</h2>
+      <p>În conformitate cu GDPR, beneficiați de următoarele drepturi cu privire la datele dumneavoastră personale:</p>
+      <ul>
+        <li><strong>Dreptul de acces</strong> — puteți solicita o copie a datelor pe care le deținem despre dumneavoastră.</li>
+        <li><strong>Dreptul la rectificare</strong> — puteți solicita corectarea datelor inexacte sau incomplete.</li>
+        <li><strong>Dreptul la ștergere („dreptul de a fi uitat")</strong> — puteți solicita ștergerea datelor în anumite condiții prevăzute de lege.</li>
+        <li><strong>Dreptul la restricționarea prelucrării</strong> — puteți solicita limitarea prelucrării datelor dumneavoastră în anumite situații.</li>
+        <li><strong>Dreptul la portabilitatea datelor</strong> — puteți solicita primirea datelor furnizate într-un format structurat, lizibil automat.</li>
+        <li><strong>Dreptul la opoziție</strong> — vă puteți opune prelucrării datelor bazate pe interesul legitim al operatorului.</li>
+        <li><strong>Dreptul de a retrage consimțământul</strong> — dacă prelucrarea se bazează pe consimțământ, îl puteți retrage oricând, fără a afecta legalitatea prelucrării anterioare retragerii.</li>
+        <li><strong>Dreptul de a depune o plângere</strong> — puteți sesiza Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP) la adresa <a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer">www.dataprotection.ro</a>.</li>
+      </ul>
+      <p>Pentru exercitarea oricăruia dintre aceste drepturi, ne puteți contacta la adresa: <a href="mailto:recrutare@diviziamedicala.ro">recrutare@diviziamedicala.ro</a>. Vom răspunde solicitărilor în termen de maximum 30 de zile.</p>
+
+      <h2>6. Cookies și Tehnologii de Urmărire</h2>
+      <p>Site-ul nostru poate utiliza cookie-uri tehnice strict necesare pentru funcționarea corectă a paginilor. Aceste cookie-uri nu colectează date de identificare personală și nu sunt utilizate în scopuri de publicitate sau profilare.</p>
+      <p>Nu utilizăm cookie-uri de analiză sau marketing fără consimțământul dumneavoastră prealabil. Dacă în viitor vom integra astfel de instrumente (ex. Google Analytics), veți fi informat și vi se va cere acordul.</p>
+      <p>Puteți gestiona sau dezactiva cookie-urile direct din setările browserului dumneavoastră.</p>
+
+      <h2>7. Legături către Terți</h2>
+      <p>Site-ul nostru poate conține linkuri către platforme externe (ex. LinkedIn). Divizia Medicală nu este responsabilă pentru practicile de confidențialitate ale acestor platforme. Vă recomandăm să consultați politicile lor de confidențialitate înainte de a furniza date personale.</p>
+
+      <h2>8. Modificări ale Politicii de Confidențialitate</h2>
+      <p>Putem actualiza periodic această politică pentru a reflecta modificări legislative sau operaționale. Data ultimei actualizări este indicată în antetul documentului. Vă recomandăm să verificați periodic această pagină.</p>
+
+      <h2>9. Contact pentru Date Personale</h2>
+      <p>Pentru orice întrebare, solicitare sau sesizare privind prelucrarea datelor dumneavoastră personale, ne puteți contacta la:</p>
+      <p>
+        <strong>Email:</strong> <a href="mailto:recrutare@diviziamedicala.ro">recrutare@diviziamedicala.ro</a><br/>
+        <strong>Adresă:</strong> Global City, Șoseaua București Nord 10, Pipera, București, România
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="bg-white border-t border-gray-100" style="padding:20px 60px;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-family:'Nunito',sans-serif;font-size:14px;color:#6b7280;">© 2026 Divizia Medicala. Toate drepturile rezervate.</span>
+    <span style="font-family:'Nunito',sans-serif;font-size:14px;color:#6b7280;">
+      <a href="politica.html" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#5b4fcf'" onmouseout="this.style.color='#6b7280'">Politică de confidențialitate</a>
+      <span> | </span>
+      <a href="#" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#5b4fcf'" onmouseout="this.style.color='#6b7280'">Termeni și condiții</a>
+    </span>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('nav-scrolled', window.scrollY > 10);
+    });
+  </script>
+
+</body>
+</html>
